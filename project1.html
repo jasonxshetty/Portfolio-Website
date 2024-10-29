@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project FINN | Jason Shetty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inter Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Hamburger Menu -->
+    <header>
+        <div class="container">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links" id="navMenu">
+                <ul>
+                    <li><a href="index.html#about" onclick="closeMenu()">About Me</a></li>
+                    <li><a href="index.html#projects" onclick="closeMenu()">Projects</a></li>
+                    <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
+                    <!-- Updated Resume Link -->
+                    <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Content -->
+    <section class="project-detail">
+        <div class="container">
+            <h2>Project FINN</h2>
+            <p>Test description</p>
+            <!-- Add your actual project description here -->
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
