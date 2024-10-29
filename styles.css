@@ -1,0 +1,294 @@
+/* Variables */
+:root {
+    --color-darkest: #212A31;
+    --color-darker: #2E3944;
+    --color-accent: #124E66;
+    --color-muted: #748D92;
+    --color-light: #D3D9D4;
+    --font-primary: 'Inter', sans-serif;
+}
+
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    background-color: var(--color-darkest);
+    color: var(--color-light);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: var(--color-darker);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo a {
+    color: var(--color-light);
+    font-size: 1.5em;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--color-accent);
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--color-darkest);
+    color: var(--color-light);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+}
+
+.hero h1 span {
+    color: var(--color-accent);
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.hero .button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero .button:hover {
+    background-color: var(--color-darker);
+}
+
+/* Sections */
+section {
+    padding: 60px 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+}
+
+/* About Me Section */
+.about {
+    background-color: var(--color-darker);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 40%;
+    border-radius: 10px;
+}
+
+/* Skills Section */
+.skills {
+    background-color: var(--color-accent);
+}
+
+.skills-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+}
+
+.skill-category h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category ul li {
+    background-color: var(--color-darker);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Experience Section */
+.experience {
+    background-color: var(--color-darkest);
+}
+
+.experience-item {
+    margin-bottom: 40px;
+}
+
+.experience-item h3 {
+    font-size: 1.8em;
+    color: var(--color-accent);
+}
+
+.experience-item h4 {
+    font-size: 1.2em;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+}
+
+.experience-item ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* Projects Section */
+.projects {
+    background-color: var(--color-darker);
+}
+
+.project-item {
+    margin-bottom: 40px;
+}
+
+.project-item h3 {
+    font-size: 1.8em;
+    color: var(--color-accent);
+}
+
+.project-item p {
+    margin-top: 10px;
+}
+
+/* Contact Section */
+.contact {
+    background-color: var(--color-accent);
+    text-align: center;
+}
+
+.contact p {
+    font-size: 1.2em;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: var(--color-light);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-darker);
+    color: var(--color-muted);
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content, .skills-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--color-darker);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+    }
+
+    .navbar .nav-links li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--color-light);
+        margin: 5px;
+    }
+}
+
+/* Menu Toggle Styles */
+.menu-toggle {
+    display: none;
+}
