@@ -41,7 +41,7 @@ function togglePersonalInfo() {
 let imageIndex = 1;
 function changeImage(element) {
     imageIndex++;
-    const totalImages = 3; // Update this to the total number of personal images you have
+    const totalImages = 18; // Updated to 18 images
     if (imageIndex > totalImages) {
         imageIndex = 1;
     }
