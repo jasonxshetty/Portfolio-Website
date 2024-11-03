@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Verse Finder | Jason Shetty</title>
+    <title>VerseFlow | Jason Shetty</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Inter Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -34,9 +34,28 @@
     <!-- Project Content -->
     <section class="project-detail">
         <div class="container">
-            <h2>Verse Finder</h2>
-            <p>Content coming...</p>
-            <!-- Add your actual project description here -->
+            <!-- Adjusted title size and position -->
+            <h2 class="project-title">VerseFlow</h2>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Overview</h3>
+                <p>VerseFlow is an interactive web application designed to provide users with a seamless and intuitive way to explore and present Bible verses through both voice recognition and text input. Users can find specific scripture by speaking into their device or typing a reference, and navigate between verses using intuitive navigation buttons. Designed with a modern, responsive interface, VerseFlow enhances the scripture exploration experience across various devices.</p>
+
+                <h3>Back Story</h3>
+                <p>The inspiration for VerseFlow arose from a recurring challenge during my prayer group meetings. Whenever the speaker referenced a specific Bible verse, the team had to coordinate swiftly to display it on the screen, ensuring everyone could follow along. This often created moments of distraction and interrupted the natural flow of our discussions. Wanting to make their job easier and create a more seamless experience for the group, I developed VerseFlow. This tool is designed to instantly retrieve and display any Bible verse in real-time, eliminating delays and enriching our collective engagement with scripture by keeping our focus on the message being shared.</p>
+                
+
+                <h3>Development Process</h3>
+                <p>The development of VerseFlow focused on building a seamless and interactive web application using core web technologies: HTML, CSS, and JavaScript. The frontend handles all functionality, from capturing user input to rendering scripture passages retrieved from a public Bible API. Originally, I considered using a Flask-based backend but faced deployment challenges, leading me to streamline the application into a fully client-side solution, optimized for easy hosting and accessibility.</p>
+                <p>The application uses the Web Speech API to implement voice recognition, allowing users to speak Bible verse references. This feature involves capturing and processing spoken input in real-time, converting it into formatted text using JavaScript, and then sending API requests to fetch the corresponding scripture. The user interface is built with a dark theme for better readability and features responsive design elements, including an expanded display mode that adjusts layout dynamically for immersive reading. JavaScript manages all interactions, from error handling and API response parsing to enabling navigation between verses with intuitive controls.</p>
+
+                <h3>How it Works</h3>
+                <p>VerseFlow operates entirely on the client side using JavaScript, HTML, and CSS. Users can search for Bible verses by typing a reference or using the built-in voice recognition feature powered by the Web Speech API. To use the website, users simply click the “Start Listening” button and speak the verse reference or enter it manually in the input box. The retrieved verse is then displayed on the main page, with options to expand the view for a presentational reading experience and navigate between verses using intuitive arrow buttons.</p>
+
+                <h3>Link</h3>
+                <p>View VerseFlow live in action  <a href="https://jasonxshetty.github.io/Verse-Display/" target="_blank">here</a>.</p>
+            </div>
         </div>
     </section>
 
