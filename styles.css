@@ -307,11 +307,16 @@ input:checked + .slider:before {
 .contact-left p {
     font-size: 1.2em;
     margin-bottom: 15px;
+    color: var(--color-accent)
 }
 
 .contact-left a {
-    color: var(--color-accent);
+    color: var(--color-light);
     text-decoration: none;
+}
+
+.contact-left a:hover{
+    color: var(--color-muted);
 }
 
 /* Footer */
