@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HackFin 2024 | Jason Shetty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inter Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Hamburger Menu -->
+    <header>
+        <div class="container">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-links" id="navMenu">
+                <ul>
+                    <li><a href="index.html#about" onclick="closeMenu()">About Me</a></li>
+                    <li><a href="index.html#projects" onclick="closeMenu()">Projects</a></li>
+                    <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
+                    <!-- Updated Resume Link -->
+                    <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Project Content -->
+    <section class="project-detail">
+        <div class="container">
+            <!-- Adjusted title size and position -->
+            <h2 class="project-title">HackFin 2024</h2>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Overview</h3>
+                <p>Me and my friend participated in HackFin 2024 Quantum Drift. We chose to create a project for the FinTech challenge. We were tasked with creating a financial coach for a user. We decided to create a financial advising interface which provided insights to a user based on their assets in the market.</p>
+                <p>After a sleepless night and hours of dedication, I am proud to say that we placed 3rd in the hackathon!</p>
+                <h3>Back Story</h3>
+                <p>Personally, I don't know much about the market. I am not active in any crypto or stocks or anything like that. In my head I was thinking, "What is something I could create which would help someone like myself with getting started?". The our project was driven by the need to simplify complex financial data and provide actionable insights to everyday users. Observing the challenges individuals face in managing their finances effectively, I sought to create a platform that empowers users with the right tools and information to make informed financial decisions.</p>
+                <p>Throughout the development process, the focus has been on user-centric design, ensuring that HackFin is both intuitive and powerful, catering to users with varying levels of financial expertise.</p>
+
+                <h3>Development Process</h3>
+                <p>We started with brainstorming and defining the key features, focusing on real-time data integration and interactive tools like the Scenario Simulator and What-If Analysis. We built the entire application using TypeScript, leveraging React to create a responsive and modular frontend design. Custom TypeScript algorithms were developed to handle risk scoring, scenario simulations, and market sentiment analysis, with data sourced from external financial APIs. Multiple iterations of UI/UX design were conducted to ensure the interface effectively displayed complex financial data in an intuitive and user-friendly way. Rigorous testing and debugging ensured smooth performance, particularly when handling dynamic user interactions and large datasets. This iterative approach enabled us to deliver a reliable, engaging, and highly functional dashboard for users of varying investment expertise. </p>
+
+                <h3>How it Works</h3>
+                <p>Our project works by accessing users' assets provided by linking their virtual wallet. When the user logs in, they can see their assets, risk scores, and recent market updates. The website has multiple tabs for a smooth navigation. These tabs consist of: Portfolio Details, Risk Analysis, Market Sentiment, Scenario Simulator, and Portfolio Optimizer. </p>
+                <p>The user can see their risk analysis in the Risk Analysis tab. This provides an overall risk score from 0% to 100%, a portfolio value, and any potential alerts, in regards to certain assets. In the market sentiment tab, the user can see real time market news which may impact their investment(s). The "Scenario Simulator" and "Portfolio Optimizer" functionalities were not complete. Our biggest constraint for this project was time with it being a 24 hour hackathon. The scenario simulator was (in theory) a tool which would show how your assets would be impacted based on potential real time effects, such as Geopolitical Tensions, Market Crash, etc. The portfolio optimization tool was (in theory) a tool which would give insights based on certain parameters provided, overall maximizing profits and minimizing losses./p>
+
+                <h3>YouTube Video</h3>
+                <p>You can access the video:  <a href="https://www.youtube.com/watch?v=1aeyUA4M1MM" target="_blank">here</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

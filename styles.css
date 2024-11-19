@@ -255,17 +255,39 @@ input:checked + .slider:before {
     background-color: var(--color-darkest);
 }
 
-.project-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 50px;
+.projects h2 {
+    text-align: center;
+    color: var(--color-light);
+    font-size: 2.5em;
+    margin-bottom: 50px;
 }
 
+/* Scroll Container */
+.project-scroll-container {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents items from wrapping to the next line */
+    padding-bottom: 20px; /* Adds space below for scrollbar */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    position: relative; /* For potential scroll indicators */
+}
+
+/* Project List */
+.project-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Project Item */
 .project-item {
+    flex: 0 0 auto; /* Prevents flex items from shrinking or growing */
     width: 300px;
-    margin: 20px;
+    margin-right: 20px; /* Space between items */
     text-align: center;
+}
+
+.project-item:last-child {
+    margin-right: 0; /* Removes the right margin for the last item */
 }
 
 .project-item img {
@@ -273,6 +295,7 @@ input:checked + .slider:before {
     height: 200px;
     object-fit: cover;
     border-radius: 10px;
+    background-color: #ccc; /* Gray background for placeholder */
 }
 
 .project-item h3 {
@@ -287,6 +310,22 @@ input:checked + .slider:before {
 
 .project-item a:hover h3 {
     color: var(--color-accent);
+}
+
+/* Hide scrollbar for WebKit browsers */
+.project-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: Hide scrollbar for other browsers */
+.project-scroll-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth Scrolling (Optional) */
+.project-scroll-container {
+    scroll-behavior: smooth;
 }
 
 /* Contact Section */
@@ -307,7 +346,7 @@ input:checked + .slider:before {
 .contact-left p {
     font-size: 1.2em;
     margin-bottom: 15px;
-    color: var(--color-accent)
+    color: var(--color-accent);
 }
 
 .contact-left a {
@@ -394,6 +433,12 @@ footer {
     .contact-left {
         padding: 0;
         text-align: center;
+    }
+
+    /* Adjust Projects Section for smaller screens */
+    .project-item {
+        width: 250px;
+        margin-right: 15px;
     }
 }
 
