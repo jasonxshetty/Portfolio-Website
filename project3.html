@@ -11,25 +11,24 @@
 </head>
 <body>
 
-    <!-- Hamburger Menu -->
-    <header>
-        <div class="container">
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="nav-links" id="navMenu">
-                <ul>
-                    <li><a href="index.html#about" onclick="closeMenu()">About Me</a></li>
-                    <li><a href="index.html#projects" onclick="closeMenu()">Projects</a></li>
-                    <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
-                    <!-- Updated Resume Link -->
-                    <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Hamburger Menu Icon -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-links" id="navMenu">
+        <ul>
+            <li><a href="index.html#intro" onclick="closeMenu()">Home</a></li>
+            <li><a href="index.html#about" onclick="closeMenu()">About Me</a></li>
+            <li><a href="index.html#projects" onclick="closeMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
+            <!-- Updated Resume Link -->
+            <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
+        </ul>
+    </nav>
 
     <!-- Project Content -->
     <section class="project-detail">
