@@ -395,6 +395,18 @@ footer {
     margin-top: 15px;
 }
 
+/* 
+   ADDED: This rule ensures images within .project-content 
+   do not become too large, stay responsive, and are centered.
+*/
+.project-content img {
+    max-width: 400px;  
+    height: auto;      
+    display: block;    
+    margin: 0 auto;
+    border-radius: 10px;    
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links ul {
