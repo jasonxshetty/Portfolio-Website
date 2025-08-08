@@ -82,8 +82,12 @@
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2>Projects</h2>
-            <div class="project-scroll-container">
+            <div class="project-toggle-header">
+                <button id="experienceBtn" onclick="showExperience()" class="toggle-btn">Experience</button>
+                <span style="margin: 0 10px;">|</span>
+                <button id="projectsBtn" onclick="showProjects()" class="toggle-btn active">Projects</button>
+            </div>
+            <div class="project-scroll-container" id="projectCards">
                 <div class="project-list">
                     <div class="project-item">
                         <a href="project1.html">
@@ -124,6 +128,28 @@
                             <h3>prodio (HackUTD 2024)</h3>
                         </a>
                     </div>
+                </div>
+            </div>
+            <div class="project-scroll-container" id="experienceCards" style="display:none;">
+                <div class="project-list">
+                    <div class="project-item">
+                        <a href="experience1.html">
+                            <img src="assets/images/hcsc.png" alt="Experience 1 Cover" class="project-cover">
+                            <div class="project-info">
+                                <h3>Developer Intern @ HCSC</h3>
+                            </div>
+                        </a>
+                    </div>
+                    <!--
+                    <div class="project-item">
+                        <a href="experience2.html">
+                            <img src="assets/images/placeholder.jpg" alt="Experience 2 Cover" class="project-cover">
+                            <div class="project-info">
+                                <h3>SWE @ EPICS (UT Dallas)</h3>
+                            </div>
+                        </a>
+                    </div>
+                    -->
                 </div>
             </div>
         </div>

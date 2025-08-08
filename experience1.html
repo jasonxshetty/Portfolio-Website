@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HCSC | Jason Shetty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inter Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <!-- Hamburger Menu Icon -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-links" id="navMenu">
+        <ul>
+            <li><a href="index.html#intro" onclick="closeMenu()">Home</a></li>
+            <li><a href="index.html#about" onclick="closeMenu()">About Me</a></li>
+            <li><a href="index.html#projects" onclick="closeMenu()">Projects</a></li>
+            <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
+            <!-- Updated Resume Link -->
+            <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Project Content -->
+    <section class="project-detail">
+        <div class="container">
+            <!-- Adjusted title size and position -->
+            <h2 class="project-title">Developer Intern @ HCSC</h2>
+
+            <!-- Project Content -->
+            <div class="project-content">
+                <h3>Overview</h3>
+                <p>In the summer of 2025, I had the priviledge of contributing as a Developer Intern within Product Engineering on the Enterprise API Team (EAT).</p>
+
+                <h3>Project</h3>
+                <p>EAT builds, manages, and facilitates the use of over 900+ applications across HCSC. Because of which, they have multiple projects for different product teams going on simeltaneously. Another intern and myself were tasked with finding an efficent way to displaying all this data for Product Teams and other stakeholders to see where this project is in our system. </p>
+                <p>We came up with a comprehensive card view, in which users can see all the projects effeciently. Each card represents a one project and displays miscellaneous information for that project, including: Title, Engagement Number, Project Code, Status, and Progress Bar (which represents the development progress). When the user clicks into the card, they can see a more detailed view with more information on that project. We were able to optimize this with advanced search and filter functionalities. Additionally, we were able to get our application to run in linear run time (originally it was running in O(n * (m + k) time)).</p>
+
+                <h3>Technologies Learned</h3>
+                <li>MuleSoft</li>
+                <li>AnyPoint Studio</li>
+                <li>SPFx React</li>
+                <li>GitHub Enterprise</li>
+
+                <h3>Achievements</h3>
+                <p>Our application was deployed internally and is actually being used by various Product Teams and other users. With the deployment of our application, we are reducing toil and bridging that communication gap between product teams and EAT.</p>
+                <p>In an ideal situation, we are reducing the communication time on updates by 5-10 hours per app developed (hopefully more). With around 250 apps made per year, we can understand that we are saving over 1000 hours. At a development cost of nearly $100/hour, we can see that we are saving hundreds of thousands of dollars per year with our application 🤑💰💸</p>
+
+                <h3>Skills Developed</h3>
+                <p>Main soft skill I developed is the ability to effectively communicate. I learned the impact of it and how it is a functional building block to everything. From building relationships with friends, coworkers, managers, directors &mdash; and even attending networking events or delivering a presentation, effective communication underlies and amplifies it all.</p>
+                <p>I also learned what it means to really engineer a solution. I got the chance to analyze problems, break them down and find the optimal solution. I understand what it really means to troubleshoot and deliver a solution &mdash; which is something I thought I understood, but experiencing this at an enterprise level really opened my eyes.</p>
+
+                <h3>Network</h3>
+                <p>The network I grew with my time at HCSC is the most invaluable thing I am walking away from this internship with. I have grown my network significantly, from the leadership to the coworkers, peers, mentors, friends, and lots more &mdash; many of which I am antiicpating on being connected with well beyond this summer.</p>
+                <p>The mentorship I recieved from the people of this company was truly nothing short of amazing. The people at HCSC were extremely approachable and always went the extra mile to help with anything they could. Whether I was asking a dumb question or working through something, they never turned me down and made it priority to be included.</p>
+                <p>This summer I worked alongside another intern on EAT, a student studying at U of I, Kyle. Both of us worked together effeciently and seamlessly, despite him being located in a different location, and I am extremely grateful for having contributed together &mdash; wouldn't have it another way. Working with someone else helped me understand about collaboration, but also myself. I learned about my own strengths and weaknesses, which was really insightful.</p>
+               
+                <h3>Conclusion</h3>
+                <p>Contributing as a Developer Intern at HCSC during the Summer of 2025 was the most rewarding experience in my journey. I have continuously learned and grown from technical skills to soft skills, business skills, and many more. Thank you, HCSC, for this opportunity to contribute and be a part of something.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -47,3 +47,16 @@ function changeImage(element) {
     }
     element.src = `assets/images/personal-photo${imageIndex}.jpg`;
 }
+
+function showExperience() {
+    document.getElementById('projectCards').style.display = 'none';
+    document.getElementById('experienceCards').style.display = 'block';
+    document.getElementById('experienceBtn').classList.add('active');
+    document.getElementById('projectsBtn').classList.remove('active');
+}
+function showProjects() {
+    document.getElementById('projectCards').style.display = 'block';
+    document.getElementById('experienceCards').style.display = 'none';
+    document.getElementById('projectsBtn').classList.add('active');
+    document.getElementById('experienceBtn').classList.remove('active');
+}

@@ -269,6 +269,9 @@ input:checked + .slider:before {
     padding-bottom: 20px; /* Adds space below for scrollbar */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     position: relative; /* For potential scroll indicators */
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 /* Project List */
@@ -276,6 +279,8 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 30px;
 }
 
 /* Project Item */
@@ -457,4 +462,34 @@ footer {
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: color 0.2s;
+}
+.toggle-btn.active {
+    color: var(--color-light);
+    text-decoration: underline;
+}
+.project-toggle-header {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Center cards in experience section */
+#experienceCards .project-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* space between cards */
 }
