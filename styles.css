@@ -493,3 +493,26 @@ html {
     justify-content: center;
     gap: 30px; /* space between cards */
 }
+
+.rounded-img {
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+.pictures-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pictures-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.smaller-img {
+    width: 300px;
+    height: 300px;
+}
