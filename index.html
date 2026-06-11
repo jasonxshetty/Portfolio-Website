@@ -1,184 +1,580 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <title>Jason Shetty | Personal Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Inter Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Jason Shetty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { accent: '#60a5fa' },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Reusable components ─────────────────────────────── */
+    .skill-chip {
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgb(55 65 81);
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      color: rgb(156 163 175);
+      cursor: default;
+      user-select: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-chip:hover { border-color: rgb(107 114 128); color: rgb(229 231 235); }
+
+    .tech-tag {
+      padding: 0.125rem 0.5rem;
+      background-color: rgb(31 41 55);
+      color: rgb(107 114 128);
+      font-size: 0.72rem;
+      border-radius: 0.25rem;
+      font-family: ui-monospace, monospace;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.625rem 1.25rem;
+      border: 1px solid rgb(55 65 81);
+      color: rgb(209 213 219);
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: #60a5fa; color: #60a5fa; }
+
+    .nav-link {
+      font-size: 0.875rem;
+      color: rgb(156 163 175);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: white; }
+
+    /* ── Scroll fade animation ───────────────────────────── */
+    .section-fade {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .section-fade.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── About: tab buttons ──────────────────────────────── */
+    .tab-btn {
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 0.25rem;
+      border: 1px solid;
+      cursor: pointer;
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .tab-btn.active   { border-color: #60a5fa; color: #60a5fa; }
+    .tab-btn.inactive { border-color: rgb(55 65 81); color: rgb(107 114 128); }
+    .tab-btn.inactive:hover { border-color: rgb(107 114 128); color: rgb(156 163 175); }
+
+    /* ── About: image offset frame ───────────────────────── */
+    .about-img-wrap {
+      position: relative;
+      width: 13rem;
+      height: 17rem;
+      flex-shrink: 0;
+    }
+    .about-img-wrap .img-shadow {
+      position: absolute;
+      inset: 0;
+      transform: translate(10px, 10px);
+      border: 1px solid rgba(96, 165, 250, 0.2);
+      border-radius: 0.5rem;
+    }
+    .about-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      z-index: 1;
+    }
+
+    /* ── Detail chips in About ───────────────────────────── */
+    .detail-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.65rem;
+      background: rgba(96, 165, 250, 0.06);
+      border: 1px solid rgba(96, 165, 250, 0.15);
+      color: rgb(147 197 253);
+      font-size: 0.72rem;
+      border-radius: 9999px;
+      font-weight: 500;
+    }
+
+    /* ── Horizontal scroll (projects) ────────────────────── */
+    .h-scroll {
+      display: flex;
+      flex-direction: row;
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .h-scroll::-webkit-scrollbar { display: none; }
+    .h-scroll-card {
+      flex: 0 0 auto;
+      width: 280px;
+      scroll-snap-align: start;
+    }
+
+    /* ── About: gallery button ───────────────────────────── */
+    .gallery-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      color: rgb(147 197 253);
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      margin-top: 1.25rem;
+    }
+    .gallery-btn:hover {
+      border-color: #60a5fa;
+      color: white;
+      background: rgba(96, 165, 250, 0.06);
+    }
+
+    /* ── Donut container ─────────────────────────────────── */
+    #donut {
+      font-family: ui-monospace, 'Courier New', monospace;
+      font-size: 8px;
+      line-height: 1.18;
+      color: rgba(96, 165, 250, 0.5);
+      user-select: none;
+      white-space: pre;
+      letter-spacing: 0;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    
-    <!-- Hamburger Menu Icon -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+
+<!-- body has no background — fixed bg layer provides it -->
+<body class="text-gray-100 font-sans antialiased">
+
+  <!-- ── Fixed background: dot grid ────────────────────────────── -->
+  <div style="position:fixed; inset:0; z-index:-1;
+              background-color:#111827;
+              background-image:radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+              background-size:28px 28px;">
+  </div>
+  <!-- Subtle accent glow in hero zone -->
+  <div style="position:fixed; inset:0; z-index:-1;
+              background:radial-gradient(ellipse 70% 55% at 40% 30%, rgba(96,165,250,0.035), transparent);">
+  </div>
+
+  <!-- ── Nav ───────────────────────────────────────────────────── -->
+  <nav id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="#intro" class="text-white font-bold text-lg tracking-tight">JS.</a>
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#about"    class="nav-link">About</a></li>
+        <li><a href="#skills"   class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact"  class="nav-link">Contact</a></li>
+        <li>
+          <a href="assets/files/resume.pdf" target="_blank"
+             class="text-sm px-3.5 py-1.5 border border-gray-700 text-gray-300 rounded
+                    hover:border-accent hover:text-accent transition-all duration-200">
+            Resume
+          </a>
+        </li>
+      </ul>
+      <button id="menuBtn" aria-label="Toggle menu" onclick="toggleMenu()"
+              class="md:hidden flex flex-col gap-[5px] p-1">
+        <span class="block w-5 h-px bg-gray-400" id="bar1"></span>
+        <span class="block w-5 h-px bg-gray-400" id="bar2"></span>
+        <span class="block w-5 h-px bg-gray-400" id="bar3"></span>
+      </button>
     </div>
+    <div id="mobileMenu" class="hidden border-t border-gray-800 md:hidden"
+         style="background:rgba(17,24,39,0.97); backdrop-filter:blur(10px);">
+      <ul class="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-4">
+        <li><a href="#about"    onclick="closeMenu()" class="block text-sm text-gray-400 hover:text-white transition-colors">About</a></li>
+        <li><a href="#skills"   onclick="closeMenu()" class="block text-sm text-gray-400 hover:text-white transition-colors">Skills</a></li>
+        <li><a href="#projects" onclick="closeMenu()" class="block text-sm text-gray-400 hover:text-white transition-colors">Projects</a></li>
+        <li><a href="#contact"  onclick="closeMenu()" class="block text-sm text-gray-400 hover:text-white transition-colors">Contact</a></li>
+        <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()"
+               class="block text-sm text-accent hover:text-white transition-colors">Resume ↗</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Navigation Menu -->
-    <nav class="nav-links" id="navMenu">
-        <ul>
-            <li><a href="#intro" onclick="closeMenu()">Home</a></li>
-            <li><a href="#about" onclick="closeMenu()">About Me</a></li>
-            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-            <!-- Updated Resume Link -->
-            <li><a href="assets/files/resume.pdf" target="_blank" onclick="closeMenu()">Resume</a></li>
-        </ul>
-    </nav>
+  <!-- ── Hero (transparent — shows dot grid) ───────────────────── -->
+  <section id="intro" class="min-h-screen flex flex-col justify-center pt-20 pb-16"
+           style="background: transparent;">
+    <div class="max-w-5xl mx-auto px-6 w-full">
+      <div class="flex flex-row items-center justify-between gap-8">
 
-    <!-- Intro Section -->
-    <section class="intro" id="intro">
-        <div class="intro-content">
-            <h1><span class="dark-text">Hello, I am</span><br><span class="light-text">Jason Shetty</span></h1>
+        <!-- Left: text -->
+        <div class="min-w-0">
+          <p class="text-accent text-xs font-medium tracking-[0.2em] uppercase mb-6">Hi, I'm</p>
+          <h1 class="text-6xl md:text-8xl font-bold text-white mb-6 leading-none tracking-tight">
+            Jason<br>Shetty
+          </h1>
+          <div class="flex items-center h-8 mb-10">
+            <span id="typed-text" class="text-lg md:text-xl text-gray-500 font-light"></span>
+            <span class="ml-0.5 inline-block w-px h-5 bg-accent animate-pulse"></span>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#projects"
+               class="inline-flex items-center justify-center px-5 py-2.5 border border-accent
+                      text-accent text-sm font-medium rounded
+                      hover:bg-accent hover:text-gray-900 transition-all duration-200 w-fit">
+              View Projects
+            </a>
+            <a href="assets/files/resume.pdf" target="_blank"
+               class="inline-flex items-center gap-1.5 text-sm text-gray-500
+                      hover:text-gray-200 transition-colors py-2.5 w-fit">
+              Resume <span class="text-xs opacity-60">↗</span>
+            </a>
+          </div>
         </div>
-    </section>
 
-    <!-- About Me Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <!-- Toggle Switch -->
-            <div class="switch-wrapper">
-                <label class="switch">
-                    <input type="checkbox" id="togglePersonal" onclick="togglePersonalInfo()">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <!-- Professional Info -->
-            <div class="about-content" id="professionalInfo">
-                <div class="about-row">
-                    <div class="about-text">
-                        <p>My name is Jason Shetty, and I am in my third year of B.S. in Computer Science at The University of Texas at Dallas. My journey in tech is driven by a deep curiosity in how things work and a passion for building solutions which are impactful. From developing and working with AI to streamlining automation processes, I thrive on tackling challenges which require creative and technical problem solving. <br><br>
+        <!-- Right: ASCII donut -->
+        <pre id="donut" class="hidden lg:block shrink-0" aria-hidden="true"></pre>
 
-                            Beyond academic achievements, I gained hands-on experiences working on real time projects. My expertise spans programming languages, API development and integrations, and full-stack development, with an interest in Artificial Intelligence and automation. I’m committed to exploring new tools and technologies and pushing my own limits as an innovator.</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="assets/images/professional.jpg" alt="Professional Photo">
-                    </div>
-                </div>
-            </div>
-            <!-- Personal Info -->
-            <div class="about-content" id="personalInfo">
-                <div class="about-row">
-                    <div class="about-text">
-                        <p>Off the clock, I love making the most of my time. Whether it’s spending time with family, staying active, or exploring new places, I always look forward to quality moments with the people around me. Recently, I’ve been getting creative in the kitchen—cooking and trying new recipes has been a fun adventure away from screens and algorithms. <br><br>
+      </div>
+    </div>
+  </section>
 
-                            One thing about me is that I’m competitive at heart. I’ll jump at the chance to play basketball, volleyball, tennis, or ping-pong, often in winning fashion 😉. In my opinion, nothing beats a satisfying win. And when the Dallas Cowboys or Mavs are on, you can probably find me cheering (or occasionally yelling) at the TV. Watching sports has been a constant since I was a kid, and I’m proud to call myself a lifelong fan.</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="assets/images/personal-photo1.jpg" alt="Personal Photo" onclick="changeImage(this)">
-                        <!-- Moved "Click Through My Life" title below the image -->
-                        <h3 class="click-title">Click Through My Life!</h3>
-                    </div>
-                </div>
+  <!-- ── About ─────────────────────────────────────────────────── -->
+  <section id="about" class="py-24 border-t border-gray-800" style="background:#111827;">
+    <div class="max-w-5xl mx-auto px-6 section-fade">
+
+      <h2 class="text-3xl font-bold text-white mb-10">About Me</h2>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-10">
+        <button id="tab-pro"      onclick="switchTab('pro')"      class="tab-btn active">Professional</button>
+        <button id="tab-personal" onclick="switchTab('personal')" class="tab-btn inactive">Personal</button>
+      </div>
+
+      <!-- Professional -->
+      <div id="professionalInfo">
+        <div class="flex flex-wrap gap-12 items-center">
+          <div class="flex-1 min-w-[260px]">
+            <p class="text-gray-300 text-base leading-relaxed mb-4">
+              I graduated from UT Dallas with a B.S. in Computer Science in December 2025. My journey in tech is driven by deep curiosity about how things work and a passion for building impactful solutions.
+            </p>
+            <p class="text-gray-500 text-base leading-relaxed mb-6">
+              From developing AI-powered tools to streamlining automation pipelines, I thrive on challenges that blend creative thinking with technical execution. My focus spans full-stack development, API development, artificial intelligence, and cybersecurity.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="detail-chip">B.S. Computer Science</span>
+              <span class="detail-chip">SWE @ JPMorganChase</span>
+              <span class="detail-chip">Prev. SWE @ Fidelity</span>
+              <span class="detail-chip">Prev. Intern @ HCSC</span>
+
             </div>
+          </div>
+          <div class="about-img-wrap">
+            <div class="img-shadow"></div>
+            <img src="assets/images/professional.jpg" alt="Jason Shetty">
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <div class="project-toggle-header">
-                <button id="experienceBtn" onclick="showExperience()" class="toggle-btn">Experience</button>
-                <span style="margin: 0 10px;">|</span>
-                <button id="projectsBtn" onclick="showProjects()" class="toggle-btn active">Projects</button>
+      <!-- Personal -->
+      <div id="personalInfo" style="display:none;">
+        <div class="flex flex-wrap gap-12 items-center">
+          <div class="flex-1 min-w-[260px]">
+            <p class="text-gray-300 text-base leading-relaxed mb-4">
+              Off the clock, I'm competitive at heart — basketball, ping-pong, volleyball, or football. I’ve always loved the energy of sports: the trash talk, the pressure, and the feeling of getting better each time you play.
+            </p>
+            <p class="text-gray-500 text-base leading-relaxed mb-6">
+              Outside of sports, I’m probably spending time with family, staying active, exploring new places, or experimenting in the kitchen. I enjoy going on different adventures with friends, family, and/or Benny (my labradoodle).
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="detail-chip">Cowboys/Mavs Fan</span>
+              <span class="detail-chip">3x Ping Pong Champion</span>
+              <span class="detail-chip">is350 Owner</span>
             </div>
-            <div class="project-scroll-container" id="projectCards">
-                <div class="project-list">
-                    <div class="project-item">
-                        <a href="project1.html">
-                            <!-- Using gray placeholder image -->
-                            <img src="assets/images/placeholder.jpg" alt="Project FINN">
-                            <h3>Project FINN</h3>
-                        </a>
-                    </div>
-                    <!--
-                    <div class="project-item">
-                        <a href="project2.html">
-                            <!-- Using gray placeholder image
-                            <img src="assets/images/placeholder.jpg" alt="Investment Strategies">
-                            <h3>Investment Strategies</h3>
-                        </a>
-                    </div>
-                    -->
-                    <div class="project-item">
-                        <a href="project3.html">
-                            <!-- Using gray placeholder image -->
-                            <img src="assets/images/placeholder.jpg" alt="VerseFlow">
-                            <h3>VerseFlow</h3>
-                        </a>
-                    </div>
-                    <!-- New Project: HackFin 2024 -->
-                    <div class="project-item">
-                        <a href="project4.html">
-                            <!-- Using gray placeholder image -->
-                            <img src="assets/images/placeholder.jpg" alt="HackFin 2024">
-                            <h3>FinSights (HackFin 2024)</h3>
-                        </a>
-                    </div>
-                    <!-- New Project: Project 5 -->
-                    <div class="project-item">
-                        <a href="project5.html">
-                            <!-- Using gray placeholder image -->
-                            <img src="assets/images/placeholder.jpg" alt="Project 5">
-                            <h3>prodio (HackUTD 2024)</h3>
-                        </a>
-                    </div>
-                </div>
+          </div>
+          <div class="shrink-0 flex flex-col items-center">
+            <div class="about-img-wrap">
+              <div class="img-shadow"></div>
+              <!-- Swap src for your preferred featured photo -->
+              <img src="assets/images/personal-photo15.jpg" alt="Personal">
             </div>
-            <div class="project-scroll-container" id="experienceCards" style="display:none;">
-                <div class="project-list">
-                    <div class="project-item">
-                        <a href="experience1.html">
-                            <img src="assets/images/hcsc.png" alt="Experience 1 Cover" class="project-cover">
-                            <div class="project-info">
-                                <h3>Developer Intern @ HCSC</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <!--
-                    <div class="project-item">
-                        <a href="experience2.html">
-                            <img src="assets/images/placeholder.jpg" alt="Experience 2 Cover" class="project-cover">
-                            <div class="project-info">
-                                <h3>SWE @ EPICS (UT Dallas)</h3>
-                            </div>
-                        </a>
-                    </div>
-                    -->
-                </div>
-            </div>
+            <a href="gallery.html" class="gallery-btn">
+              Photo Gallery <span style="font-size:0.7rem;">↗</span>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Contact</h2>
-            <div class="contact-container">
-                <!-- Centered contact information -->
-                <div class="contact-left">
-                    <p>Email: <a href="mailto:jason.shetty@outlook.com">jason.shetty@outlook.com</a></p>
-                    <p>Phone: <a href="tel:+14696183028">(469) 618-3028</a></p>
-                    <p>LinkedIn: <a href="https://www.linkedin.com/in/jason-shetty-033994245/" target="_blank">Jason Shetty</a></p>
-                    <p>GitHub: <a href="https://github.com/jasonxshetty" target="_blank">jasonxshetty</a></p>
-                </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ────────────────────────────────────────────────── -->
+  <section id="skills" class="py-24 border-t border-gray-800" style="background:#111827;">
+    <div class="max-w-5xl mx-auto px-6 section-fade">
+
+      <h2 class="text-3xl font-bold text-white mb-12">Skills</h2>
+
+      <div class="space-y-8">
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Core Engineering</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">Java</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">JavaScript</span>
+            <span class="skill-chip">TypeScript</span>
+            <span class="skill-chip">Spring Boot</span>
+            <span class="skill-chip">React</span>
+            <span class="skill-chip">Node.js</span>
+            <span class="skill-chip">SQL</span>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Jason Shetty. All rights reserved.</p>
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Full-Stack Systems</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">REST APIs</span>
+            <span class="skill-chip">Microservices</span>
+            <span class="skill-chip">API Design</span>
+            <span class="skill-chip">GraphQL</span>
+            <span class="skill-chip">gRPC</span>
+            <span class="skill-chip">OAuth 2.0</span>
+            <span class="skill-chip">JWT</span>
+            <span class="skill-chip">Next.js</span>
+            <span class="skill-chip">Express.js</span>
+            <span class="skill-chip">FastAPI</span>
+            </div>
         </div>
-    </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Cloud-Native Development</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">AWS</span>
+            <span class="skill-chip">Docker</span>
+            <span class="skill-chip">Kubernetes</span>
+            <span class="skill-chip">GitHub Actions</span>
+            <span class="skill-chip">CI/CD Pipelines</span>
+            <span class="skill-chip">Linux / Unix</span>
+            <span class="skill-chip">Terraform</span>
+            <span class="skill-chip">Jenkins</span>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Data & Infrastructure</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">PostgreSQL</span>
+            <span class="skill-chip">MySQL</span>
+            <span class="skill-chip">MongoDB</span>
+            <span class="skill-chip">Redis</span>
+            <span class="skill-chip">Kafka</span>
+            <span class="skill-chip">Database Design</span>
+            <span class="skill-chip">Query Optimization</span>
+            <span class="skill-chip">Distributed Systems</span>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Enterprise Integration</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">MuleSoft</span>
+            <span class="skill-chip">DataWeave</span>
+            <span class="skill-chip">Postman</span>
+            <span class="skill-chip">Swagger / OpenAPI</span>
+            <span class="skill-chip">Anypoint Studio</span>
+            <span class="skill-chip">API Gateways</span>
+            <span class="skill-chip">Backend Automation</span>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-xs text-gray-600 uppercase tracking-widest mb-3">Engineering Tools</p>
+            <div class="flex flex-wrap gap-2">
+            <span class="skill-chip">Git</span>
+            <span class="skill-chip">GitHub</span>
+            <span class="skill-chip">JUnit</span>
+            <span class="skill-chip">Mockito</span>
+            <span class="skill-chip">Selenium</span>
+            <span class="skill-chip">Jira</span>
+            <span class="skill-chip">Confluence</span>
+            <span class="skill-chip">IntelliJ IDEA</span>
+            <span class="skill-chip">VS Code</span>
+            <span class="skill-chip">Raspberry Pi</span>
+            </div>
+        </div>
+        </div>
+
+    </div>
+  </section>
+
+  <!-- ── Projects / Experience ─────────────────────────────────── -->
+  <section id="projects" class="py-24 border-t border-gray-800" style="background:#111827;">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <div class="section-fade">
+        <div class="flex items-baseline gap-6 mb-10">
+          <button id="projectsBtn" onclick="showProjects()"
+                  class="text-3xl font-bold text-white border-b-2 border-accent pb-0.5 transition-all duration-200">
+            Projects
+          </button>
+          <button id="experienceBtn" onclick="showExperience()"
+                  class="text-3xl font-bold text-gray-600 border-b-2 border-transparent pb-0.5
+                         hover:text-gray-400 transition-all duration-200">
+            Experience
+          </button>
+        </div>
+        <!-- Scroll hint -->
+        <p class="text-gray-700 text-xs mb-6 tracking-wide">← scroll →</p>
+      </div>
+
+      <!-- Project cards: horizontal scroll -->
+      <div id="projectCards" class="h-scroll">
+
+        <a href="project1.html" class="h-scroll-card group block border border-gray-800 rounded-lg
+                                       overflow-hidden hover:border-gray-600 transition-all duration-200">
+          <div class="h-44 bg-gray-800 overflow-hidden">
+            <img src="assets/images/projectfinn.jpg" alt="Project FINN"
+                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100
+                        group-hover:scale-105 transition-all duration-500">
+          </div>
+          <div class="p-5">
+            <h3 class="text-gray-100 font-semibold mb-2">Project FINN</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              AI in-car assistant on Raspberry Pi with voice, Spotify &amp; Tesla APIs.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">OpenAI</span>
+              <span class="tech-tag">RPi</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="project3.html" class="h-scroll-card group block border border-gray-800 rounded-lg
+                                       overflow-hidden hover:border-gray-600 transition-all duration-200">
+          <div class="h-44 bg-gray-800 overflow-hidden">
+            <img src="assets/images/verseflow.jpg" alt="VerseFlow"
+                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100
+                        group-hover:scale-105 transition-all duration-500">
+          </div>
+          <div class="p-5">
+            <h3 class="text-gray-100 font-semibold mb-2">VerseFlow</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Creative writing tool for structured verse and lyric generation.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">NLP</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="project4.html" class="h-scroll-card group block border border-gray-800 rounded-lg
+                                       overflow-hidden hover:border-gray-600 transition-all duration-200">
+          <div class="h-44 bg-gray-800 overflow-hidden">
+            <img src="assets/images/FinHack.jpg" alt="FinSights"
+                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100
+                        group-hover:scale-105 transition-all duration-500">
+          </div>
+          <div class="p-5">
+            <h3 class="text-gray-100 font-semibold mb-2">FinSights</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              HackFin 2024 — real-time financial analytics dashboard.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">API</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="project5.html" class="h-scroll-card group block border border-gray-800 rounded-lg
+                                       overflow-hidden hover:border-gray-600 transition-all duration-200">
+          <div class="h-44 bg-gray-800 overflow-hidden">
+            <img src="assets/images/prodio.jpg" alt="prodio"
+                 class="w-full h-full object-cover opacity-60 group-hover:opacity-100
+                        group-hover:scale-105 transition-all duration-500">
+          </div>
+          <div class="p-5">
+            <h3 class="text-gray-100 font-semibold mb-2">prodio</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              HackUTD 2024 — productivity automation tool in 24 hours.
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Automation</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Experience cards: horizontal scroll -->
+      <div id="experienceCards" class="h-scroll" style="display:none;">
+
+        <a href="experience1.html" class="h-scroll-card group block border border-gray-800 rounded-lg
+                                          overflow-hidden hover:border-gray-600 transition-all duration-200">
+          <div class="h-44 bg-gray-800 flex items-center justify-center overflow-hidden p-8">
+            <img src="assets/images/hcsc.png" alt="HCSC"
+                 class="max-h-full max-w-full object-contain
+                        group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-5">
+            <h3 class="text-gray-100 font-semibold mb-1">Developer Intern</h3>
+            <p class="text-gray-600 text-sm">Health Care Service Corporation (HCSC)</p>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Contact ───────────────────────────────────────────────── -->
+  <section id="contact" class="py-24 border-t border-gray-800" style="background:#111827;">
+    <div class="max-w-5xl mx-auto px-6 section-fade">
+      <h2 class="text-3xl font-bold text-white mb-3">Get in Touch</h2>
+      <p class="text-gray-500 text-base mb-10 max-w-md leading-relaxed">
+        Open to new opportunities, collaborations, or just a conversation.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="mailto:jason.shetty@outlook.com" class="contact-link">Email</a>
+        <a href="https://www.linkedin.com/in/jason-shetty-033994245/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/jasonxshetty" target="_blank" class="contact-link">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer class="border-t border-gray-800 py-8" style="background:#111827;">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-gray-700 text-sm">&copy; 2026 Jason Shetty</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
